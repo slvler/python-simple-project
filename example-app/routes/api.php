@@ -24,3 +24,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::post('/build', [BuildController::class, 'index']);
+
+
+
+Route::post('/detail', [BuildController::class, 'detail']);
