@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>İndex Sayfası</title>
+{% endblock %}
+{% block body %}
+<div class="card">
+    <div class="card-header">
+        <a href="/create">
+              <button class="btn btn-primary">Create</button>
+        </a>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th style="width: 10px">#</th>
+                <th>Firstname</th>
+                <th>LastName</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th style="width: 40px">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in people %}
+            <tr>
+                <td>{{ row.ssn }}</td>
+                <td>{{ row.firstname }}</td>
+                <td>{{ row.lastname }}</td>
+                <td>{{ row.gender }}</td>
+                <td>{{ row.age }}</td>
+                <td>
+                    <a href="/edit/{{ row.ssn }}">
+                        <button class="btn btn-block btn-warning">Edit</button>
+                    </a>
+                    <a href="/delete/{{ row.ssn }}">
+                        <button class="btn btn-block btn-danger">Delete</button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+{% endblock %}
