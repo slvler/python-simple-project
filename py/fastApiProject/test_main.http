@@ -1,0 +1,22 @@
+POST http://127.0.0.1:8000/authsing_up
+Content-Type: application/json
+
+{
+  "id": 0,
+  "username": "string",
+  "email": "string",
+  "password": "string",
+  "is_active": true,
+  "is_staff": true
+}
+
+###
+# Test your FastAPI endpoints
+
+GET http://127.0.0.1:8000/
+Accept: application/json
+###
+
+GET http://127.0.0.1:8000/hello/User
+Accept: application/json
+###
