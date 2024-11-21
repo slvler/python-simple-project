@@ -1,18 +1,45 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, make_response, session
+
+from itsdangerous import Signer
 
 app = Flask(__name__)
 
+app.secret_key = b"014asdasdasD__"
+
 @app.route("/")
 def index():
+    if 'name' in session:
+        print('name', session['name'])
+
+    session['name'] = "john doe"
+    session["surname"] = "doe"
+    session["city"] = "ist"
+
     return render_template('index.html')
+
+
+@app.route("/response")
+def response():
+
+    signer = Signer(b"secret key")
+    signed_name = signer.sign(b"Mehmet")
+
+    signed_name_str = signed_name.decode()
+
+    response = make_response("<html><body><h1>test response</h1></body></html>")
+    response.set_cookie('name', signed_name_str)
+    return response
+
 
 @app.route("/home")
 def home():
     return render_template('home.html')
 
+
 @app.route("/hello-admin")
 def helloAdmin():
     return render_template('admin.html')
+
 
 @app.route("/user/<name>")
 def user(name):
@@ -21,14 +48,17 @@ def user(name):
     print(name)
     return render_template('user.html', name=name)
 
+
 @app.route("/add/<int:number1>/<int:number2>")
 def add(number1, number2):
     calculate = number1 + number2
     return render_template('calculate.html', number1=number1, number2=number2, calculate=calculate)
 
+
 @app.route("/login")
 def login():
     return render_template('login.html')
+
 
 @app.route("/login/check", methods=["POST"])
 def loginCheck():
@@ -37,6 +67,7 @@ def loginCheck():
     print(request.form)
     result = "name: {}, password: {}".format(name, password)
     return result
+
 
 @app.route("/register")
 def register():
@@ -53,6 +84,7 @@ def record():
     }
     print(context)
     return render_template('record.html', **context)
+
 
 @app.route("/argument")
 def argument():
