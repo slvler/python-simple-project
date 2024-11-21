@@ -1,22 +1,23 @@
 from flask import Flask, render_template, redirect, url_for, request, make_response, session
-
 from itsdangerous import Signer
+from .session_interface import MySessionInterface
 
 app = Flask(__name__)
 
 app.secret_key = b"014asdasdasD__"
+#app.session_interface = MySessionInterface()
 
 @app.route("/")
 def index():
-    if 'name' in session:
-        print('name', session['name'])
+    return render_template('main.html')
 
-    session['name'] = "john doe"
-    session["surname"] = "doe"
-    session["city"] = "ist"
+@app.route("/generic")
+def generic():
+    return render_template('generic.html')
 
-    return render_template('index.html')
-
+@app.route("/elements")
+def elements():
+    return render_template('elements.html')
 
 @app.route("/response")
 def response():
