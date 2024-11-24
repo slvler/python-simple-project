@@ -86,6 +86,12 @@ def menu():
         sha256 = "sha256"
         sha384 = "sha384"
         sha512 = "sha512"
+        blake2b = "blake2b"
+        blake2s = "blake2s"
+        sha3_224 = "sha3_224"
+        sha3_256 = "sha3_256"
+        sha3_384 = "sha3_384"
+        sha3_512 = "sha3_512"
 
         print(base64)
         print(md5)
@@ -94,6 +100,12 @@ def menu():
         print(sha256)
         print(sha384)
         print(sha512)
+        print(blake2b)
+        print(blake2s)
+        print(sha3_224)
+        print(sha3_256)
+        print(sha3_384)
+        print(sha3_512)
 
         type = input("choose encryption type: ")
 
@@ -109,6 +121,18 @@ def menu():
             print(f'hash: {hashlib.sha384(password.encode()).hexdigest()}')
         elif type == 'sha512':
             print(f'hash: {hashlib.sha512(password.encode()).hexdigest()}')
+        elif type == 'blake2b':
+            print(f'hash: {hashlib.blake2b(password.encode()).hexdigest()}')
+        elif type == 'blake2s':
+            print(f'hash: {hashlib.blake2s(password.encode()).hexdigest()}')
+        elif type == 'sha3_224':
+            print(f'hash: {hashlib.sha3_224(password.encode()).hexdigest()}')
+        elif type == 'sha3_256':
+            print(f'hash: {hashlib.sha3_256(password.encode()).hexdigest()}')
+        elif type == 'sha3_384':
+            print(f'hash: {hashlib.sha3_384(password.encode()).hexdigest()}')
+        elif type == 'sha3_512':
+            print(f'hash: {hashlib.sha3_512(password.encode()).hexdigest()}')
         else:
             print("error")
             exit()
