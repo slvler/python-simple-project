@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-8">
+                <div class="tab-content-inner active" data-content="signup">
+                    <h3>Book Your Trip</h3>
+                    <form action="{{ url_for('user_update') }}" method="POST">
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="fullname">Email</label>
+                                <input type="text" id="email" class="form-control" name="email" value="{{ user.email }}">
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="fullname">Fullname</label>
+                                <input type="text" id="fullname" class="form-control" name="fullname" value="{{ user.fullname }}">
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="fullname">Surname</label>
+                                <input type="text" id="surname" class="form-control" name="surname" value="{{ user.surname }}">
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="activities">Gender</label>
+                                 <select name="gender" id="gender" class="form-control">
+                                    <option {% if user.gender == 'f' %}selected{% endif %} value="f">F</option>
+                                    <option {% if user.gender == 'm' %}selected{% endif %} value="m">M</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <input value="{{ user.id }}" name="id" type="hidden">
+
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <input type="submit" class="btn btn-primary btn-block" value="Submit">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

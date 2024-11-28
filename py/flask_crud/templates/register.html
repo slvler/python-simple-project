@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-8">
+                <div class="tab-content-inner active" data-content="signup">
+                    <h3>Book Your Trip</h3>
+                    <form action="{{ url_for('record') }}" method="POST">
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="fullname">Your Name</label>
+                                <input type="text" id="fullname" class="form-control" name="fullname">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="fullname">Your Surname</label>
+                                <input type="text" id="surname" class="form-control" name="surname">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="fullname">Email</label>
+                                <input type="text" id="email" class="form-control" name="email">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="fullname">Password</label>
+                                <input type="text" id="password" class="form-control" name="password">
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="destination">Gender</label>
+                                <select name="gender" id="destination" class="form-control">
+                                    <option value="f">F</option>
+                                    <option value="m">M</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <input type="submit" class="btn btn-primary btn-block" value="Submit">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
