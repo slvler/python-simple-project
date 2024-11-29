@@ -9,8 +9,8 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 
-CHROME_DRIVER_PATH = "/home/hicri/Masaüstü/py-101/py/sel-1/chromedriver"
-CHROME_BINARY_PATH = "/home/hicri/İndirilenler/chrome-linux64/chrome"
+CHROME_DRIVER_PATH = "#"
+CHROME_BINARY_PATH = "#"
 
 options = Options()
 options.binary_location = CHROME_BINARY_PATH
