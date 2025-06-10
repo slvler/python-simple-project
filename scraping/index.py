@@ -49,6 +49,18 @@ class MedlineScraper:
         except Exception:
             return None
 
+    def get_section_info(self, source, id_element):
+        try:
+            title = source.find("div", attrs={"id": id_element}).find("h2").text
+            content = source.find("div", attrs={"id": id_element}).find("div", attrs={"class": "section-body"}).text
+            return dict(
+                title=title,
+                content=content
+            )
+        except Exception:
+            return None
+
+
     def scrape_drugs(self):
         result = list()
         links = self.find_all_drug_links()
@@ -57,21 +69,40 @@ class MedlineScraper:
         for link in bar:
             if i == 5:
                 break
+
+            sections=list()
             bar.set_description(link)
             drug_source = self.get_source(link)
             name = self.get_name(drug_source)
+
+            why = self.get_section_info(drug_source, "why")
+            sections.append(why)
+
+            how = self.get_section_info(drug_source, "how")
+            sections.append(how)
+
+            other_uses = self.get_section_info(drug_source, "other-uses")
+            sections.append(other_uses)
+
+            precautions = self.get_section_info(drug_source, "precautions")
+            sections.append(precautions)
+
             result.append(dict(
                 name=name,
-                url=link
+                url=link,
+                sections=sections
             ))
             i += 1
         return result
 
 
+    def write_as_json(self, data):
+        with open("result.json", "w", encoding='utf-8') as f:
+            f.write(json.dumps(data, indent=2))
+
 if __name__ == "__main__":
     scraper = MedlineScraper()
     data = scraper.scrape_drugs()
-    print(data)
-    pprint(json.dumps(data))
+    scraper.write_as_json(data)
 
 
